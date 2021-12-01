@@ -9,7 +9,7 @@ const GoogleAuth = {
 
     options: {
         scope: [
-            'https://www.googleapis.com/auth/photoslibrary.readonly'
+            'https://www.googleapis.com/auth/userinfo.email'
         ],
         domainRoot: 'http://localhost',
         port: 3000,
@@ -31,7 +31,7 @@ const GoogleAuth = {
         const redirect_url = options.domainRoot + ':' + options.port + options.callbackPath;
         const url_root = 'http://localhost' + ':' + options.port;
         const keys = require(options.credPath);
-        // const tokenPath = options.tokenPath;
+        const tokenPath = options.tokenPath;
         const scope = options.scope;
         const access_type = 'offline';
         const callbackPath = options.callbackPath;
@@ -63,7 +63,7 @@ const GoogleAuth = {
                         // acquire the code from the querystring, and close the web server.
                         const qs = new url.URL(req.url, url_root).searchParams;
                         const code = qs.get('code');
-                        res.end('authentication successful. closing server..');
+                        res.end('authentication successful. please close this browser window.');
                         server.destroy();
 
                         // Now that we have the code, use that to acquire tokens.
@@ -72,7 +72,9 @@ const GoogleAuth = {
                         // Save Tokens
                         console.log('token obtained.');
                         self.tokens = r.tokens;
-                        // fs.writeFileSync(tokenPath, JSON.stringify(r.tokens, null, 4));
+                        if(tokenPath) {
+                          fs.writeFileSync(tokenPath, JSON.stringify(r.tokens, null, 4));
+                        }
 
                         // Make sure to set the credentials on the OAuth2 client.
                         this.client.setCredentials(r.tokens);

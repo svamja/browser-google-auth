@@ -1,7 +1,7 @@
 {
   "name": "browser-google-auth",
-  "version": "1.0.0",
-  "description": "A simple google authenticator that launches browser and return auth token",
+  "version": "1.1.0",
+  "description": "A simple google authentication that launches browser and return auth token",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,23 @@
     "open": "^8.0.4",
     "server-destroy": "^1.0.1",
     "url": "^0.11.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svamja/browser-google-auth.git"
+  },
+  "keywords": [
+    "google",
+    "auth",
+    "oauth2",
+    "authentication",
+    "browser",
+    "desktop",
+    "command line"
+  ],
+  "bugs": {
+    "url": "https://github.com/svamja/browser-google-auth/issues"
+  },
+  "homepage": "https://github.com/svamja/browser-google-auth#readme"
 }
